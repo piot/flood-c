@@ -17,7 +17,7 @@ jobs:
         run: cmake --version
 
       - name: install deps
-        run: go get github.com/piot/deps/src/deps
+        run: go install github.com/piot/deps/src/deps
 
       - name: deps fetch
         run: deps fetch -m clone
