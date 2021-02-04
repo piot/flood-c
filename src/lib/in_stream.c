@@ -27,6 +27,20 @@ int fldInStreamReadUInt8(FldInStream* self, uint8_t* t)
     return 0;
 }
 
+int fldInStreamReadInt8(FldInStream* self, int8_t* t)
+{
+    self->pos++;
+    if (self->pos > self->size) {
+        CLOG_SOFT_ERROR("fldReadInt8: read too far! %zu %zu", self->pos, self->size);
+        *t = 0xff;
+        return -1;
+    }
+
+    *t = *self->p++;
+
+    return 0;
+}
+
 int fldInStreamReadUInt16(struct FldInStream* self, uint16_t* t)
 {
     self->pos += 2;

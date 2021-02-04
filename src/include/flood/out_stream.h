@@ -19,6 +19,7 @@ typedef struct FldOutStream {
 void fldOutStreamInit(struct FldOutStream* self, uint8_t* octets, size_t count);
 void fldOutStreamRewind(FldOutStream* self);
 int fldOutStreamWriteUInt8(struct FldOutStream* self, uint8_t t);
+int fldOutStreamWriteInt8(struct FldOutStream* self, int8_t t);
 int fldOutStreamWriteUInt16(struct FldOutStream* self, uint16_t v);
 int fldOutStreamWriteInt32(struct FldOutStream* self, int32_t t);
 int fldOutStreamWriteUInt32(struct FldOutStream* self, uint32_t v);

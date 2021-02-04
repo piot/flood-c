@@ -33,6 +33,18 @@ int fldOutStreamWriteUInt8(FldOutStream* self, uint8_t t)
     return 0;
 }
 
+int fldOutStreamWriteInt8(FldOutStream* self, int8_t t)
+{
+    if (self->pos + 1 > self->size) {
+        CLOG_SOFT_ERROR("fldWriteInt8: too far %zu %zu", self->pos, self->size);
+        return -1;
+    }
+
+    *self->p++ = t;
+    self->pos++;
+    return 0;
+}
+
 int fldOutStreamWriteUInt16(FldOutStream* self, uint16_t v)
 {
     if (self->pos + 2 > self->size) {
