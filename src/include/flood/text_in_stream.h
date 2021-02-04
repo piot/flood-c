@@ -20,4 +20,11 @@ typedef struct FldTextInStreamState {
     size_t pos;
 } FldTextInStreamState;
 
+void fldTextInStreamInit(FldTextInStream* self, FldInStream* inStream);
+void fldTextInStreamDebug(FldTextInStream* self, const char* description);
+void fldTextInStreamTell(FldTextInStream* self, FldTextInStreamState* state);
+int fldTextInStreamSeek(FldTextInStream* self, const FldTextInStreamState* state);
+int fldTextInStreamReadCh(FldTextInStream* self, char* ch);
+int fldTextInStreamUnreadCh(FldTextInStream* self);
+
 #endif
