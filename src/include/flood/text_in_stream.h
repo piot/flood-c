@@ -27,4 +27,6 @@ int fldTextInStreamSeek(FldTextInStream* self, const FldTextInStreamState* state
 int fldTextInStreamReadCh(FldTextInStream* self, char* ch);
 int fldTextInStreamUnreadCh(FldTextInStream* self);
 
+const char* fldTextInStreamPositionString(FldTextInStream* self);
+
 #endif

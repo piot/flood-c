@@ -104,3 +104,11 @@ int fldTextInStreamUnreadCh(FldTextInStream* self)
 
     return 0;
 }
+
+const char* fldTextInStreamPositionString(FldTextInStream* self)
+{
+    static temp[64];
+    tc_snprintf(temp, 64, ":%d:%d:", self->line+1, self->column+1);
+
+    return temp;
+}
