@@ -113,12 +113,20 @@ int fldOutStreamWritevf(FldOutStream* self, const char* fmt, va_list pl)
     }
 
     int countWritten = vsnprintf((char*) self->p, countLeft, fmt, pl);
-    if (countWritten < 0) {
+    if (countWritten <= 0) {
         return -2;
+    }
+
+    if (countWritten == countLeft) {
+        return -3;
     }
 
     self->p += countWritten;
     self->pos += countWritten;
+
+    if (self->pos >= self->size) {
+        CLOG_SOFT_ERROR("fldOutStreamWritevf: too far %zu %zu", self->pos, self->size);
+    }
 
     return 0;
 }
