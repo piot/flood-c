@@ -31,7 +31,7 @@ int fldInStreamReadInt8(FldInStream* self, int8_t* t)
 {
     self->pos++;
     if (self->pos > self->size) {
-        CLOG_SOFT_ERROR("fldReadInt8: read too far! %zu %zu", self->pos, self->size);
+        CLOG_SOFT_ERROR("fldReadInt8: read too far! %zu %zu", self->pos, self->size)
         *t = 0xff;
         return -1;
     }
@@ -45,7 +45,7 @@ int fldInStreamReadUInt16(struct FldInStream* self, uint16_t* t)
 {
     self->pos += 2;
     if (self->pos > self->size) {
-        CLOG_SOFT_ERROR("fldReadUint16: read too far! %zu %zu", self->pos, self->size);
+        CLOG_SOFT_ERROR("fldReadUint16: read too far! %zu %zu", self->pos, self->size)
         return -2;
     }
 
@@ -64,7 +64,7 @@ int fldInStreamReadInt32(struct FldInStream* self, int32_t* t)
 {
     self->pos += 4;
     if (self->pos > self->size) {
-        CLOG_SOFT_ERROR("fldReadInt32: read too far! %zu %zu", self->pos, self->size);
+        CLOG_SOFT_ERROR("fldReadInt32: read too far! %zu %zu", self->pos, self->size)
 
         return -2;
     }
@@ -86,7 +86,7 @@ int fldInStreamReadUInt32(struct FldInStream* self, uint32_t* t)
 {
     self->pos += 4;
     if (self->pos > self->size) {
-        CLOG_SOFT_ERROR("fldReadUInt32: read too far! %zu %zu", self->pos, self->size);
+        CLOG_SOFT_ERROR("fldReadUInt32: read too far! %zu %zu", self->pos, self->size)
 
         return -2;
     }
@@ -131,7 +131,7 @@ int fldInStreamReadOctets(FldInStream* self, uint8_t* t, size_t count)
 {
     self->pos += count;
     if (self->pos > self->size) {
-        CLOG_SOFT_ERROR("fldInStreamReadOctets: read too far! %zu (%zu) %zu", self->pos, count, self->size);
+        CLOG_SOFT_ERROR("fldInStreamReadOctets: read too far! %zu (%zu) %zu", self->pos, count, self->size)
         *t = 0xff;
         return -1;
     }

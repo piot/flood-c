@@ -29,7 +29,7 @@ void fldTextInStreamDebug(FldTextInStream* self, const char* description)
     }
     debug[run] = 0;
 
-    CLOG_VERBOSE("%s:%d:%d '%s'", description, self->line + 1, self->column + 1, debug);
+    CLOG_VERBOSE("%s:%d:%d '%s'", description, self->line + 1, self->column + 1, debug)
 }
 
 void fldTextInStreamTell(FldTextInStream* self, FldTextInStreamState* state)

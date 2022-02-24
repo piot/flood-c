@@ -24,7 +24,7 @@ void fldOutStreamRewind(FldOutStream* self)
 int fldOutStreamWriteUInt8(FldOutStream* self, uint8_t t)
 {
     if (self->pos + 1 > self->size) {
-        CLOG_SOFT_ERROR("fldWriteUint8: too far %zu %zu", self->pos, self->size);
+        CLOG_SOFT_ERROR("fldWriteUint8: too far %zu %zu", self->pos, self->size)
         return -1;
     }
 
@@ -36,7 +36,7 @@ int fldOutStreamWriteUInt8(FldOutStream* self, uint8_t t)
 int fldOutStreamWriteInt8(FldOutStream* self, int8_t t)
 {
     if (self->pos + 1 > self->size) {
-        CLOG_SOFT_ERROR("fldWriteInt8: too far %zu %zu", self->pos, self->size);
+        CLOG_SOFT_ERROR("fldWriteInt8: too far %zu %zu", self->pos, self->size)
         return -1;
     }
 
@@ -48,7 +48,7 @@ int fldOutStreamWriteInt8(FldOutStream* self, int8_t t)
 int fldOutStreamWriteUInt16(FldOutStream* self, uint16_t v)
 {
     if (self->pos + 2 > self->size) {
-        CLOG_SOFT_ERROR("fldWriteUint16: too far %zu %zu", self->pos, self->size);
+        CLOG_SOFT_ERROR("fldWriteUint16: too far %zu %zu", self->pos, self->size)
         return -2;
     }
 
@@ -63,7 +63,7 @@ int fldOutStreamWriteUInt16(FldOutStream* self, uint16_t v)
 int fldOutStreamWriteUInt32(FldOutStream* self, uint32_t v)
 {
     if (self->pos + 4 > self->size) {
-        CLOG_SOFT_ERROR("fldWriteUInt32: too far %zu %zu", self->pos, self->size);
+        CLOG_SOFT_ERROR("fldWriteUInt32: too far %zu %zu", self->pos, self->size)
         return -2;
     }
 
@@ -80,7 +80,7 @@ int fldOutStreamWriteUInt32(FldOutStream* self, uint32_t v)
 int fldOutStreamWriteInt32(FldOutStream* self, int32_t v)
 {
     if (self->pos + 4 > self->size) {
-        CLOG_SOFT_ERROR("fldWriteInt32: too far %zu %zu", self->pos, self->size);
+        CLOG_SOFT_ERROR("fldWriteInt32: too far %zu %zu", self->pos, self->size)
         return -2;
     }
 
@@ -149,7 +149,7 @@ int fldOutStreamWritef(FldOutStream* self, const char* fmt, ...)
 int fldOutStreamWriteOctets(FldOutStream* self, const uint8_t* t, size_t count)
 {
     if (self->pos + count > self->size) {
-        CLOG_SOFT_ERROR("fldWriteOctets: too far %zu %zu %zu", self->pos, count, self->size);
+        CLOG_SOFT_ERROR("fldWriteOctets: too far %zu %zu %zu", self->pos, count, self->size)
         return -1;
     }
 
