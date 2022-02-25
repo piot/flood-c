@@ -18,7 +18,7 @@ int fldInStreamReadUInt8(FldInStream* self, uint8_t* t)
 {
     self->pos++;
     if (self->pos > self->size) {
-        CLOG_SOFT_ERROR("fldReadUint8: read too far! %zu %zu", self->pos, self->size);
+        CLOG_SOFT_ERROR("fldReadUint8: read too far! %zu %zu", self->pos, self->size)
         *t = 0xff;
         return -1;
     }
