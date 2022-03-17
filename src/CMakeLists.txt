@@ -41,8 +41,8 @@ add_compile_options(-Wall -Wextra -Wshadow -Wstrict-aliasing -ansi -pedantic -Wn
 set(deps ../deps/)
 
 include_directories(include)
-include_directories(${deps}tiny-libc/src/include)
-include_directories(${deps}clog/src/include)
+include_directories(${deps}piot/tiny-libc/src/include)
+include_directories(${deps}piot/clog/src/include)
 
 file(GLOB_RECURSE lib_src FOLLOW_SYMLINKS
         "lib/*.c"
