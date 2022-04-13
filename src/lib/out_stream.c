@@ -112,7 +112,7 @@ int fldOutStreamWritevf(FldOutStream* self, const char* fmt, va_list pl)
         return -1;
     }
 
-    int countWritten = vsnprintf((char*) self->p, countLeft, fmt, pl);
+    int countWritten = vsnprintf((char*)self->p, countLeft, fmt, pl);
     if (countWritten <= 0) {
         return -2;
     }
@@ -133,7 +133,7 @@ int fldOutStreamWritevf(FldOutStream* self, const char* fmt, va_list pl)
 
 int fldOutStreamWrites(FldOutStream* self, const char* s)
 {
-    return fldOutStreamWriteOctets(self, (const uint8_t*) s, tc_strlen(s));
+    return fldOutStreamWriteOctets(self, (const uint8_t*)s, tc_strlen(s));
 }
 
 int fldOutStreamWritef(FldOutStream* self, const char* fmt, ...)

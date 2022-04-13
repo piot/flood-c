@@ -13,9 +13,6 @@ jobs:
         with:
           cmake-version: "3.22.x"
 
-      - name: Use cmake
-        run: cmake --version
-
       - name: Install Go
         uses: actions/setup-go@v2
         with:
@@ -24,7 +21,7 @@ jobs:
       - name: deps fetch dependencies
         run: go run github.com/piot/deps/src/deps@main fetch -m clone
         env:
-          GITHUB_TOKEN: ${{ secrets.DEPS_PAT }}
+          GITHUB_TOKEN: ${{secrets.DEPS_PAT}}
 
       - name: create cmake cache
         run: cmake -DCMAKE_BUILD_TYPE=Debug .
@@ -36,6 +33,6 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: Flood MacOS Library
+          name: flood MacOS Library
           path: |
             src/libflood.a
