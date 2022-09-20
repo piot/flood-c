@@ -118,7 +118,6 @@ int fldInStreamReadUInt64(struct FldInStream* self, uint64_t* out)
     }
 
     uint64_t result = hi;
-    result = hi;
     result <<= 32;
     result |= low;
 
