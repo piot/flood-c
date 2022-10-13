@@ -15,6 +15,8 @@ typedef struct FldInStream {
     size_t pos;
 } FldInStream;
 
+void fldInStreamCheckMarker(FldInStream* inStream, uint8_t expectedId);
+
 void fldInStreamInit(struct FldInStream* self, const uint8_t* octets, size_t count);
 int fldInStreamReadUInt8(struct FldInStream* self, uint8_t* t);
 int fldInStreamReadInt8(struct FldInStream* self, int8_t* t);

@@ -159,3 +159,9 @@ int fldOutStreamWriteOctets(FldOutStream* self, const uint8_t* t, size_t count)
 
     return 0;
 }
+
+
+void fldOutStreamWriteMarker(FldOutStream* outStream, uint8_t expectedId)
+{
+    fldOutStreamWriteUInt8(outStream, expectedId);
+}

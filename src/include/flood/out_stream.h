@@ -30,4 +30,6 @@ int fldOutStreamWritef(FldOutStream* self, const char* fmt, ...);
 int fldOutStreamWritevf(FldOutStream* self, const char* fmt, va_list list);
 int fldOutStreamWrites(FldOutStream* self, const char* s);
 
+void fldOutStreamWriteMarker(FldOutStream* outStream, uint8_t expectedId);
+
 #endif

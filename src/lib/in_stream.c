@@ -140,3 +140,19 @@ int fldInStreamReadOctets(FldInStream* self, uint8_t* t, size_t count)
 
     return 0;
 }
+
+void fldInStreamCheckMarker(FldInStream* inStream, uint8_t expectedId)
+{
+    uint8_t readMarker;
+    int worked = fldInStreamReadUInt8(inStream, &readMarker);
+
+    if (worked < 0)
+    {
+        CLOG_ERROR("couldn't read %d", worked);
+    }
+
+    if (readMarker != expectedId)
+    {
+        CLOG_ERROR("wrong marker %02X", readMarker, expectedId);
+    }
+}
