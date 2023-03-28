@@ -153,6 +153,6 @@ void fldInStreamCheckMarker(FldInStream* inStream, uint8_t expectedId)
 
     if (readMarker != expectedId)
     {
-        CLOG_ERROR("wrong marker %02X", readMarker, expectedId);
+        CLOG_ERROR("wrong marker %02X %02X", readMarker, expectedId);
     }
 }
