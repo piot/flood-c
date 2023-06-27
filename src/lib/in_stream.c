@@ -148,11 +148,11 @@ void fldInStreamCheckMarker(FldInStream* inStream, uint8_t expectedId)
 
     if (worked < 0)
     {
-        CLOG_SOFT_ERROR("couldn't read %d", worked);
+        CLOG_SOFT_ERROR("couldn't read %d", worked)
     }
 
     if (readMarker != expectedId)
     {
-        CLOG_SOFT_ERROR("wrong marker %02X %02X", readMarker, expectedId);
+        CLOG_SOFT_ERROR("wrong marker %02X %02X", readMarker, expectedId)
     }
 }
