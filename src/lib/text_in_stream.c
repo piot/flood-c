@@ -15,6 +15,8 @@ void fldTextInStreamInit(FldTextInStream* self, FldInStream* inStream)
 
 void fldTextInStreamDebug(FldTextInStream* self, const char* description)
 {
+    (void) description;
+
     char debug[9];
 
     size_t run = 8;
@@ -25,7 +27,7 @@ void fldTextInStreamDebug(FldTextInStream* self, const char* description)
     }
 
     for (size_t i = 0; i < run; ++i) {
-        debug[i] = *(self->inStream->p + i);
+        debug[i] = (char)*(self->inStream->p + i);
     }
     debug[run] = 0;
 
@@ -66,7 +68,7 @@ int fldTextInStreamReadCh(FldTextInStream* self, char* ch)
         self->column++;
     }
 
-    *ch = octet;
+    *ch = (char)octet;
 
     return 0;
 }
@@ -76,7 +78,7 @@ static int detectLineLength(const uint8_t* p, size_t maxCount)
     for (size_t i = 0; i < maxCount; ++i) {
         p--;
         if (*p == 10) {
-            return i;
+            return (int)i;
         }
     }
 
