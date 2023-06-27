@@ -12,11 +12,7 @@ jobs:
         uses: KyleMayes/install-llvm-action@v1
         with:
           version: '16.0.4'
-
-      - name: make clang-16 the default
-        run:
-          sudo update-alternatives --install /usr/bin/cc cc /usr/bin/clang-16
-          100
+          env: true
 
       - name: Setup cmake
         uses: jwlawson/actions-setup-cmake@v1.11
