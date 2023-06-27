@@ -8,8 +8,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: make clang-14 the default
-        run: sudo update-alternatives --install /usr/bin/cc cc /usr/bin/clang-14 100
+      - name: Install LLVM and Clang
+        uses: KyleMayes/install-llvm-action@v1
+        with:
+          version: "16.0.4"
 
       - name: Setup cmake
         uses: jwlawson/actions-setup-cmake@v1.11
