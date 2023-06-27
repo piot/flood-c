@@ -40,7 +40,7 @@ int fldOutStreamWriteInt8(FldOutStream* self, int8_t t)
         return -1;
     }
 
-    *self->p++ = t;
+    *self->p++ = (uint8_t )t;
     self->pos++;
     return 0;
 }
@@ -84,10 +84,10 @@ int fldOutStreamWriteInt32(FldOutStream* self, int32_t v)
         return -2;
     }
 
-    *self->p++ = (v >> 24);
-    *self->p++ = (v >> 16) & 0xff;
-    *self->p++ = (v >> 8) & 0xff;
-    *self->p++ = v & 0xff;
+    *self->p++ = (uint8_t) (v >> 24);
+    *self->p++ = (uint8_t) (v >> 16) & 0xff;
+    *self->p++ = (uint8_t) (v >> 8) & 0xff;
+    *self->p++ = (uint8_t) v & 0xff;
 
     self->pos += 4;
 
@@ -107,22 +107,25 @@ int fldOutStreamWriteUInt64(FldOutStream* self, uint64_t v)
 
 int fldOutStreamWritevf(FldOutStream* self, const char* fmt, va_list pl)
 {
-    int countLeft = self->size - self->pos - 1;
+    size_t countLeft = self->size - self->pos - 1;
     if (countLeft < 1) {
         return -1;
     }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-nonliteral"
     int countWritten = vsnprintf((char*)self->p, countLeft, fmt, pl);
+#pragma clang diagnostic pop
     if (countWritten <= 0) {
         return -2;
     }
 
-    if (countWritten == countLeft) {
+    if (countWritten == (int)countLeft) {
         return -3;
     }
 
-    self->p += countWritten;
-    self->pos += countWritten;
+    self->p += (size_t) countWritten;
+    self->pos += (size_t) countWritten;
 
     if (self->pos >= self->size) {
         CLOG_SOFT_ERROR("fldOutStreamWritevf: too far %zu %zu", self->pos, self->size)
