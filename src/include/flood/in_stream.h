@@ -7,12 +7,14 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct FldInStream {
     const uint8_t* octets;
     const uint8_t* p;
     size_t size;
     size_t pos;
+    bool readDebugInfo;
 } FldInStream;
 
 void fldInStreamCheckMarker(FldInStream* inStream, uint8_t expectedId);

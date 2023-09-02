@@ -8,12 +8,14 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct FldOutStream {
     uint8_t* octets;
     uint8_t* p;
     size_t size;
     size_t pos;
+    bool writeDebugInfo;
 } FldOutStream;
 
 void fldOutStreamInit(struct FldOutStream* self, uint8_t* octets, size_t count);

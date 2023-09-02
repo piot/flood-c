@@ -12,6 +12,7 @@ void fldInStreamInit(FldInStream* self, const uint8_t* octets, size_t count)
     self->p = octets;
     self->pos = 0;
     self->size = count;
+    self->readDebugInfo = false;
 }
 
 int fldInStreamReadUInt8(FldInStream* self, uint8_t* t)
@@ -143,6 +144,10 @@ int fldInStreamReadOctets(FldInStream* self, uint8_t* t, size_t count)
 
 void fldInStreamCheckMarker(FldInStream* inStream, uint8_t expectedId)
 {
+    if (!inStream->readDebugInfo) {
+        return;
+    }
+
     uint8_t readMarker;
     int worked = fldInStreamReadUInt8(inStream, &readMarker);
 

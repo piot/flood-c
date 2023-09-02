@@ -13,6 +13,7 @@ void fldOutStreamInit(FldOutStream* self, uint8_t* octets, size_t count)
     self->p = octets;
     self->pos = 0;
     self->size = count;
+    self->writeDebugInfo = false;
 }
 
 void fldOutStreamRewind(FldOutStream* self)
@@ -166,5 +167,8 @@ int fldOutStreamWriteOctets(FldOutStream* self, const uint8_t* t, size_t count)
 
 void fldOutStreamWriteMarker(FldOutStream* outStream, uint8_t expectedId)
 {
+    if (!outStream->writeDebugInfo) {
+        return;
+    }
     fldOutStreamWriteUInt8(outStream, expectedId);
 }
