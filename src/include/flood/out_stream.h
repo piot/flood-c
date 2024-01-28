@@ -18,6 +18,11 @@ typedef struct FldOutStream {
     bool writeDebugInfo;
 } FldOutStream;
 
+typedef struct FldOutStreamStoredPosition {
+    size_t pos;
+    uint8_t* extraVerification;
+} FldOutStreamStoredPosition;
+
 void fldOutStreamInit(struct FldOutStream* self, uint8_t* octets, size_t count);
 void fldOutStreamRewind(FldOutStream* self);
 int fldOutStreamWriteUInt8(struct FldOutStream* self, uint8_t t);
@@ -33,5 +38,9 @@ int fldOutStreamWritevf(FldOutStream* self, const char* fmt, va_list list);
 int fldOutStreamWrites(FldOutStream* self, const char* s);
 
 void fldOutStreamWriteMarker(FldOutStream* outStream, uint8_t expectedId);
+
+FldOutStreamStoredPosition fldOutStreamTell(const FldOutStream* outStream);
+void fldOutStreamSeek(FldOutStream* outStream, FldOutStreamStoredPosition seekPosition);
+size_t fldOutStreamRemainingOctets(const FldOutStream* outStream);
 
 #endif

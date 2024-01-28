@@ -172,3 +172,27 @@ void fldOutStreamWriteMarker(FldOutStream* outStream, uint8_t expectedId)
     }
     fldOutStreamWriteUInt8(outStream, expectedId);
 }
+
+FldOutStreamStoredPosition fldOutStreamTell(const FldOutStream* outStream)
+{
+    FldOutStreamStoredPosition pos;
+    pos.pos = outStream->pos;
+    pos.extraVerification = outStream->p;
+
+    return pos;
+}
+
+
+void fldOutStreamSeek(FldOutStream* outStream, FldOutStreamStoredPosition seek)
+{
+    CLOG_ASSERT(seek.pos < outStream->size, "can not seek, position is wrong");
+    CLOG_ASSERT(seek.extraVerification == outStream->octets + seek.pos, "can not seek, extra verification failed. %p vs %p", (void*)(outStream->octets + seek.pos), (void*)seek.extraVerification)
+    outStream->pos = seek.pos;
+    outStream->p = outStream->octets + outStream->pos;
+}
+
+size_t fldOutStreamRemainingOctets(const FldOutStream* outStream)
+{
+    return outStream->size - outStream->pos;
+}
+
