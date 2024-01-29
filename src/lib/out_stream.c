@@ -41,7 +41,7 @@ int fldOutStreamWriteInt8(FldOutStream* self, int8_t t)
         return -1;
     }
 
-    *self->p++ = (uint8_t )t;
+    *self->p++ = (uint8_t) t;
     self->pos++;
     return 0;
 }
@@ -115,13 +115,13 @@ int fldOutStreamWritevf(FldOutStream* self, const char* fmt, va_list pl)
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wformat-nonliteral"
-    int countWritten = vsnprintf((char*)self->p, countLeft, fmt, pl);
+    int countWritten = vsnprintf((char*) self->p, countLeft, fmt, pl);
 #pragma clang diagnostic pop
     if (countWritten <= 0) {
         return -2;
     }
 
-    if (countWritten == (int)countLeft) {
+    if (countWritten == (int) countLeft) {
         return -3;
     }
 
@@ -137,7 +137,7 @@ int fldOutStreamWritevf(FldOutStream* self, const char* fmt, va_list pl)
 
 int fldOutStreamWrites(FldOutStream* self, const char* s)
 {
-    return fldOutStreamWriteOctets(self, (const uint8_t*)s, tc_strlen(s));
+    return fldOutStreamWriteOctets(self, (const uint8_t*) s, tc_strlen(s));
 }
 
 int fldOutStreamWritef(FldOutStream* self, const char* fmt, ...)
@@ -164,7 +164,6 @@ int fldOutStreamWriteOctets(FldOutStream* self, const uint8_t* t, size_t count)
     return 0;
 }
 
-
 void fldOutStreamWriteMarker(FldOutStream* outStream, uint8_t expectedId)
 {
     if (!outStream->writeDebugInfo) {
@@ -182,11 +181,12 @@ FldOutStreamStoredPosition fldOutStreamTell(const FldOutStream* outStream)
     return pos;
 }
 
-
 void fldOutStreamSeek(FldOutStream* outStream, FldOutStreamStoredPosition seek)
 {
-    CLOG_ASSERT(seek.pos < outStream->size, "can not seek, position is wrong");
-    CLOG_ASSERT(seek.extraVerification == outStream->octets + seek.pos, "can not seek, extra verification failed. %p vs %p", (void*)(outStream->octets + seek.pos), (void*)seek.extraVerification)
+    CLOG_ASSERT(seek.pos < outStream->size, "fldOutStreamSeek: can not seek, position is wrong")
+    CLOG_ASSERT(seek.extraVerification == outStream->octets + seek.pos,
+                "fldOutStreamSeek: can not seek, extra verification failed. %p vs %p",
+                (void*) (outStream->octets + seek.pos), (void*) seek.extraVerification)
     outStream->pos = seek.pos;
     outStream->p = outStream->octets + outStream->pos;
 }
@@ -195,4 +195,3 @@ size_t fldOutStreamRemainingOctets(const FldOutStream* outStream)
 {
     return outStream->size - outStream->pos;
 }
-
